@@ -2,18 +2,7 @@
 Microservicios Spring Boot utilizando webflux
 
 # Estructura del Proyecto
-._
-  |_ postman  
-  |      |_
-  |_ srv-account-manager  
-  |      |_ proyect_files  
-  |      |_ Dockerfile    
-  |_ srv-client-manager   
-  |      |_ proyect_files   
-  |      |_ Dockerfile   
-  |_ scripts  
-  |      |_ BaseDatos.sql  
-  |_ Docker-compose.yml   
+![image](https://github.com/hgrodriguez91/devsu_test/assets/53783242/1a1d3453-6536-4986-9f50-793b7c2ba638)  
 
 # Tecnologias Utilizadas  
    - Spring Webflux  
