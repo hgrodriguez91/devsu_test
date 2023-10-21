@@ -13,4 +13,4 @@ spring:
 
 app:
   remote:
-    url:${SRV_ACCOUNT_MANAGE:http://localhost:8080}
+    url: ${SRV_ACCOUNT_MANAGE:http://localhost:8080}
