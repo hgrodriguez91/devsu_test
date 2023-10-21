@@ -1,0 +1,45 @@
+version: '1.0'
+services:
+  mysql-service:
+    image: 'mysql:5.7'
+    environment:
+      - MYSQL_ROOT_PASSWORD: admin123
+      - MYSQL_DATABASE: financial_info
+      - MYSQL_USER: userinfo
+      - MYSQL_PASSWORD: passw@123
+    ports:
+      - 3306:3306
+    volumes:
+      - "./scripts/BaseDatos.sql:/docker-entrypoint-initdb.d/1.sql"
+
+  srv-account-manager:
+    build:
+      context: ./srv-account-manager
+      dockerfile: Dockerfile
+    container_name: account-manager-app
+    restart: always
+    environment:
+      - DATABASEURL: jdbc:mysql://mysql-service:3306/financial_info
+      - DBUSERNAME: userinfo
+      - DBPASSWORD: passw@123
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-service
+
+  srv-client-manager:
+    build:
+      context: ./srv-client-manager
+      dockerfile: Dockerfile
+    container_name: client-manager-app
+    restart: always
+    environment:
+      - DATABASEURL: jdbc:mysql://mysql-service:3306/financial_info
+      - DBUSERNAME: userinfo
+      - DBPASSWORD: passw@123
+      - SRV_ACCOUNT_MANAGE: http://srv-account-manager:8080
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-service
+
